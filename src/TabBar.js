@@ -132,18 +132,6 @@ export default class TabBar<T: Route<*>> extends PureComponent<
     }
   }
 
-  componentDidUpdate(prevProps: Props<T>) {
-    if (
-      this.props.scrollEnabled &&
-      (prevProps.layout !== this.props.layout ||
-        prevProps.tabStyle !== this.props.tabStyle)
-    ) {
-      global.requestAnimationFrame(() =>
-        this._adjustScroll(this.props.navigationState.index)
-      );
-    }
-  }
-
   componentWillUnmount() {
     this._positionListener.remove();
   }
@@ -397,7 +385,7 @@ export default class TabBar<T: Route<*>> extends PureComponent<
             {routes.map((route, i) => {
               const focused = index === i;
               const outputRange = inputRange.map(
-                inputIndex => (inputIndex === i ? 1 : 0.7)
+                inputIndex => (inputIndex === i ? 1 : 0.6)
               );
               const opacity = Animated.multiply(
                 this.state.visibility,
@@ -451,51 +439,53 @@ export default class TabBar<T: Route<*>> extends PureComponent<
               const accessibilityLabel =
                 route.accessibilityLabel || route.title;
 
-              return (
-                <TouchableItem
-                  borderless
-                  key={route.key}
-                  testID={route.testID}
-                  accessible={route.accessible}
-                  accessibilityLabel={accessibilityLabel}
-                  accessibilityTraits="button"
-                  pressColor={this.props.pressColor}
-                  pressOpacity={this.props.pressOpacity}
-                  delayPressIn={0}
-                  onPress={() => {
-                    // eslint-disable-line react/jsx-no-bind
+              const createElement = this.props.container
+                ? React.cloneElement
+                : React.createElement;
+              return createElement(
+                this.props.container || TouchableItem,
+                {
+                  borderless: true,
+                  key: route.key,
+                  testID: route.testID,
+                  accessible: route.accessible,
+                  accessibilityLabel: accessibilityLabel,
+                  accessibilityTraits: 'button',
+                  pressColor: this.props.pressColor,
+                  pressOpacity: this.props.pressOpacity,
+                  delayPressIn: 0,
+                  onPress: () => {
                     const { onTabPress, jumpToIndex } = this.props;
                     jumpToIndex(i);
                     if (onTabPress) {
                       onTabPress(scene);
                     }
-                  }}
-                  style={tabContainerStyle}
-                >
-                  <View style={styles.container}>
-                    <Animated.View
-                      style={[
-                        styles.tabItem,
-                        tabStyle,
-                        passedTabStyle,
-                        styles.container,
-                      ]}
-                    >
-                      {icon}
-                      {label}
-                    </Animated.View>
-                    {badge
-                      ? <Animated.View
-                          style={[
-                            styles.badge,
-                            { opacity: this.state.visibility },
-                          ]}
-                        >
-                          {badge}
-                        </Animated.View>
-                      : null}
-                  </View>
-                </TouchableItem>
+                  },
+                  style: tabContainerStyle,
+                },
+                <View style={styles.container}>
+                  <Animated.View
+                    style={[
+                      styles.tabItem,
+                      tabStyle,
+                      passedTabStyle,
+                      styles.container,
+                    ]}
+                  >
+                    {icon}
+                    {label}
+                  </Animated.View>
+                  {badge
+                    ? <Animated.View
+                        style={[
+                          styles.badge,
+                          { opacity: this.state.visibility },
+                        ]}
+                      >
+                        {badge}
+                      </Animated.View>
+                    : null}
+                </View>
               );
             })}
           </ScrollView>

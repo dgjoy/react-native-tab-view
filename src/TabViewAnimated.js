@@ -115,6 +115,17 @@ export default class TabViewAnimated<T: Route<*>> extends PureComponent<
     this.state.position.removeListener(this._positionListener);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (
+      this.props.onUpdateRenderer &&
+      this.props.navigationState !== nextProps.navigationState
+    ) {
+      global.requestAnimationFrame(() => {
+        this.props.onUpdateRenderer(this._buildSceneRendererProps());
+      });
+    }
+  }
+
   _mounted: boolean = false;
   _nextIndex: ?number;
   _lastPosition: ?number;
@@ -197,6 +208,12 @@ export default class TabViewAnimated<T: Route<*>> extends PureComponent<
         width,
       },
     });
+
+    if (this.props.onUpdateRenderer) {
+      global.requestAnimationFrame(() => {
+        this.props.onUpdateRenderer(this._buildSceneRendererProps());
+      });
+    }
   };
 
   _buildSceneRendererProps = (): SceneRendererProps<*> => {
