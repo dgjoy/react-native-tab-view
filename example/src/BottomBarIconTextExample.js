@@ -3,10 +3,10 @@
 import React, { PureComponent } from 'react';
 import { Animated, View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { TabViewAnimated, TabBar } from 'react-native-tab-view';
+import { TabViewAnimated, TabBar } from 'react-native-tab-view-dgjoy';
 import SimplePage from './SimplePage';
 
-import type { NavigationState } from 'react-native-tab-view/types';
+import type { NavigationState } from 'react-native-tab-view-dgjoy/types';
 
 type Route = {
   key: string,

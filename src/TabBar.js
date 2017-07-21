@@ -40,6 +40,7 @@ type Props<T> = SceneRendererProps<T> & {
   scrollEnabled?: boolean,
   pressColor?: string,
   pressOpacity?: number,
+  container?: React.Element<any>,
   getLabelText: (scene: Scene<T>) => ?string,
   renderLabel?: (scene: Scene<T>) => ?React.Element<any>,
   renderIcon?: (scene: Scene<T>) => ?React.Element<any>,
@@ -66,6 +67,7 @@ export default class TabBar<T: Route<*>> extends PureComponent<
   static propTypes = {
     ...SceneRendererPropType,
     scrollEnabled: PropTypes.bool,
+    container: PropTypes.element,
     pressColor: TouchableItem.propTypes.pressColor,
     pressOpacity: TouchableItem.propTypes.pressOpacity,
     getLabelText: PropTypes.func,
@@ -319,7 +321,8 @@ export default class TabBar<T: Route<*>> extends PureComponent<
   _setRef = (el: Object) => (this._scrollView = el);
 
   render() {
-    const { position, navigationState, scrollEnabled } = this.props;
+    // $FlowFixMe
+    const { position, navigationState, scrollEnabled, container } = this.props;
     const { routes, index } = navigationState;
     const maxDistance = this._getMaxScrollableDistance(this.props);
     const finalTabWidth = this._getFinalTabWidth(this.props);
@@ -439,11 +442,11 @@ export default class TabBar<T: Route<*>> extends PureComponent<
               const accessibilityLabel =
                 route.accessibilityLabel || route.title;
 
-              const createElement = this.props.container
+              const createElement = container
                 ? React.cloneElement
                 : React.createElement;
               return createElement(
-                this.props.container || TouchableItem,
+                container || TouchableItem,
                 {
                   borderless: true,
                   key: route.key,

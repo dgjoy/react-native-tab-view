@@ -1,15 +1,15 @@
 # React Native Tab View
 
-[![npm version](https://img.shields.io/npm/v/react-native-tab-view.svg)](https://www.npmjs.com/package/react-native-tab-view)
-[![travis](https://img.shields.io/travis/react-native-community/react-native-tab-view.svg)](https://travis-ci.org/react-native-community/react-native-tab-view)
-[![license](https://img.shields.io/github/license/react-native-community/react-native-tab-view.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/react-native-tab-view-dgjoy.svg)](https://www.npmjs.com/package/react-native-tab-view-dgjoy)
+[![travis](https://img.shields.io/travis/react-native-community/react-native-tab-view-dgjoy.svg)](https://travis-ci.org/react-native-community/react-native-tab-view-dgjoy)
+[![license](https://img.shields.io/github/license/react-native-community/react-native-tab-view-dgjoy.svg)](https://opensource.org/licenses/MIT)
 
 A cross-platform Tab View component for React Native.
 
 This is a JavaScript-only implementation of swipeable tab views. It's super customizable, allowing you to do things like coverflow.
 
-- [Run the example app to see it in action](https://expo.io/@satya164/react-native-tab-view-demos).
-- Checkout the [example/](https://github.com/react-native-community/react-native-tab-view/tree/master/example) folder for source code.
+- [Run the example app to see it in action](https://expo.io/@satya164/react-native-tab-view-dgjoy-demos).
+- Checkout the [example/](https://github.com/react-native-community/react-native-tab-view-dgjoy/tree/master/example) folder for source code.
 
 
 ## Features
@@ -24,13 +24,13 @@ This is a JavaScript-only implementation of swipeable tab views. It's super cust
 
 ## Demo
 
-<a href="https://raw.githubusercontent.com/satya164/react-native-tab-view/master/demo/demo.mp4"><img src="https://raw.githubusercontent.com/satya164/react-native-tab-view/master/demo/demo.gif" width="360"></a>
+<a href="https://raw.githubusercontent.com/satya164/react-native-tab-view-dgjoy/master/demo/demo.mp4"><img src="https://raw.githubusercontent.com/satya164/react-native-tab-view-dgjoy/master/demo/demo.gif" width="360"></a>
 
 
 ## Installation
 
 ```sh
-yarn add react-native-tab-view
+yarn add react-native-tab-view-dgjoy
 ```
 
 
@@ -39,7 +39,7 @@ yarn add react-native-tab-view
 ```js
 import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view-dgjoy';
 
 const FirstRoute = () => <View style={[ styles.container, { backgroundColor: '#ff4081' } ]} />;
 const SecondRoute = () => <View style={[ styles.container, { backgroundColor: '#673ab7' } ]} />;

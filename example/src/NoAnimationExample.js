@@ -7,11 +7,11 @@ import {
   TouchableWithoutFeedback,
   StyleSheet,
 } from 'react-native';
-import { TabViewAnimated } from 'react-native-tab-view';
+import { TabViewAnimated } from 'react-native-tab-view-dgjoy';
 import { Ionicons } from '@expo/vector-icons';
 import BasicListView from './BasicListView';
 
-import type { NavigationState } from 'react-native-tab-view/types';
+import type { NavigationState } from 'react-native-tab-view-dgjoy/types';
 
 const AnimatedIcon = Animated.createAnimatedComponent(Ionicons);
 

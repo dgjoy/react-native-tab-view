@@ -2,10 +2,10 @@
 
 import React, { PureComponent } from 'react';
 import { StyleSheet } from 'react-native';
-import { TabViewAnimated, TabBar } from 'react-native-tab-view';
+import { TabViewAnimated, TabBar } from 'react-native-tab-view-dgjoy';
 import SimplePage from './SimplePage';
 
-import type { NavigationState } from 'react-native-tab-view/types';
+import type { NavigationState } from 'react-native-tab-view-dgjoy/types';
 
 type Route = {
   key: string,

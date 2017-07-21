@@ -25,6 +25,7 @@ type Props<T> = PagerProps & {
   navigationState: NavigationState<T>,
   onIndexChange: (index: number) => void,
   onPositionChange?: ({ value: number }) => void,
+  onUpdateRenderer?: (renderer: SceneRendererProps<T>) => void,
   initialLayout?: Layout,
   canJumpToTab?: (route: T) => boolean,
   renderPager: (
@@ -68,6 +69,7 @@ export default class TabViewAnimated<T: Route<*>> extends PureComponent<
     navigationState: NavigationStatePropType.isRequired,
     onIndexChange: PropTypes.func.isRequired,
     onPositionChange: PropTypes.func,
+    onUpdateRenderer: PropTypes.func,
     initialLayout: PropTypes.shape({
       height: PropTypes.number.isRequired,
       width: PropTypes.number.isRequired,
@@ -110,20 +112,18 @@ export default class TabViewAnimated<T: Route<*>> extends PureComponent<
     );
   }
 
+  componentWillReceiveProps(nextProps: Props<T>) {
+    const { onUpdateRenderer, navigationState } = this.props;
+    if (onUpdateRenderer && navigationState !== nextProps.navigationState) {
+      global.requestAnimationFrame(() => {
+        onUpdateRenderer(this._buildSceneRendererProps());
+      });
+    }
+  }
+
   componentWillUnmount() {
     this._mounted = false;
     this.state.position.removeListener(this._positionListener);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (
-      this.props.onUpdateRenderer &&
-      this.props.navigationState !== nextProps.navigationState
-    ) {
-      global.requestAnimationFrame(() => {
-        this.props.onUpdateRenderer(this._buildSceneRendererProps());
-      });
-    }
   }
 
   _mounted: boolean = false;
@@ -209,9 +209,10 @@ export default class TabViewAnimated<T: Route<*>> extends PureComponent<
       },
     });
 
-    if (this.props.onUpdateRenderer) {
+    const { onUpdateRenderer } = this.props;
+    if (onUpdateRenderer) {
       global.requestAnimationFrame(() => {
-        this.props.onUpdateRenderer(this._buildSceneRendererProps());
+        onUpdateRenderer(this._buildSceneRendererProps());
       });
     }
   };
