@@ -1,6 +1,6 @@
 {
   "name": "react-native-tab-view-dgjoy",
-  "version": "0.0.67",
+  "version": "0.0.69",
   "description": "Tab view component for React Native",
   "main": "src/index.js",
   "files": [
@@ -24,14 +24,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/react-native-community/react-native-tab-view-dgjoy.git"
+    "url": "git+https://github.com/dgjoy/react-native-tab-view-dgjoy.git"
   },
   "author": "Satyajit Sahoo <satyajit.happy@gmail.com> (https://github.com/satya164/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/react-native-community/react-native-tab-view-dgjoy/issues"
+    "url": "https://github.com/dgjoy/react-native-tab-view-dgjoy/issues"
   },
-  "homepage": "https://github.com/react-native-community/react-native-tab-view-dgjoy#readme",
+  "homepage": "https://github.com/dgjoy/react-native-tab-view-dgjoy#readme",
   "devDependencies": {
     "@expo/vector-icons": "^4.0.0",
     "babel-eslint": "^7.2.3",
